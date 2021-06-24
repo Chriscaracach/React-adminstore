@@ -8,7 +8,7 @@ import Home from "./components/home/home";
 import Login from "./components/login";
 
 const App = () => {
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
   return (
     <BrowserRouter>
       <div className="App">

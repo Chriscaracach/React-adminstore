@@ -35,7 +35,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-analytics.js"></script>
 
     <script>
-      var firebaseConfig = {
+      firebase.initializeApp({
         apiKey: "AIzaSyCEVoBKcqKAfRp8o8zVN7arAjrSKEEDeE4",
         authDomain: "adminstoreccaracach.firebaseapp.com",
         projectId: "adminstoreccaracach",
@@ -43,8 +43,7 @@
         messagingSenderId: "830817722913",
         appId: "1:830817722913:web:162fe31cacbc6c2e153960",
         measurementId: "G-NXW2VQYBKS",
-      };
-      firebase.initializeApp(firebaseConfig);
+      });
       firebase.analytics();
     </script>
   </body>
