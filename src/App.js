@@ -7,12 +7,18 @@ import Ventas from "./components/ventas/ventas";
 import Home from "./components/home/home";
 import Login from "./components/login";
 
+//Firebase
+import { auth } from "./firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 const App = () => {
-  const [isLogged, setIsLogged] = useState(false);
+  const [user] = useAuthState(auth);
+  const [usuario, setUsuario] = useState(user);
+
   return (
     <BrowserRouter>
       <div className="App">
-        {isLogged ? (
+        {user ? (
           <>
             <Nav></Nav>
             <Switch>

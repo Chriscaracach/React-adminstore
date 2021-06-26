@@ -2,8 +2,8 @@ import React from "react";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
+    <div className="container d-flex justify-content-center my-3">
+      <i class="bi bi-shop h1"></i>
     </div>
   );
 };

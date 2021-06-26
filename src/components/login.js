@@ -2,13 +2,11 @@ import React from "react";
 //Firebase
 import firebase from "firebase/app";
 import { auth } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth"; //Mandar ésto a Redux??
 
-const loguearConGoogle = () => {
-  auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-};
-
-const Login = () => {
+const Login = ({ setUsuarioLogueado }) => {
+  const loguearConGoogle = () => {
+    auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  };
   return (
     <div className="container text-center">
       <button

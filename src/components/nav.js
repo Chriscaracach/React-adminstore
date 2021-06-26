@@ -1,16 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { auth } from "../firebase";
+
+const desloguearGoogle = () => {
+  auth.signOut();
+};
 
 const Nav = () => {
   return (
     <div className="container">
-      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="1">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="1">
             Adminstore
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -18,38 +23,41 @@ const Nav = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav">
               <Link to="/">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="a">
-                    Inicio
+                <li className="nav-item">
+                  <a className="nav-link mx-2" aria-current="page" href="a">
+                    <i class="bi bi-shop h1"></i>
                   </a>
                 </li>
               </Link>
               <Link to="ventas">
-                <li class="nav-item">
-                  <a class="nav-link" href="a">
-                    Ventas
+                <li className="nav-item">
+                  <a className="nav-link mx-2" href="a">
+                    <i class="bi bi-clipboard-plus h1"></i>
                   </a>
                 </li>
               </Link>
-              <li class="nav-item">
-                <a class="nav-link" href="a">
-                  Compras
+              <li className="nav-item">
+                <a className="nav-link mx-2" href="a">
+                  <i class="bi bi-wallet2 h1"></i>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="a">
-                  Inventario
+              <li className="nav-item">
+                <a className="nav-link mx-2" href="a">
+                  <i class="bi bi-list-ol h1"></i>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="a">
+              <li className="nav-item">
+                <button
+                  className="btn nav-link mx-2"
+                  onClick={desloguearGoogle}
+                >
                   Cerrar sesión
-                </a>
+                </button>
               </li>
             </ul>
           </div>
