@@ -1,5 +1,8 @@
 import React from "react";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { auth, firestore } from "../../firebase";
 
+//Componente Item
 const Item = ({ id, fecha, tipoproducto, precio, formapago }) => {
   return (
     <li className="list-group-item">
@@ -12,7 +15,7 @@ const Item = ({ id, fecha, tipoproducto, precio, formapago }) => {
           <div className="col-2">{formapago}</div>
           <div className="col-1">
             <button className="btn">
-              <i class="bi bi-trash h1"></i>
+              <i className="bi bi-trash h1"></i>
             </button>
           </div>
         </div>
@@ -21,26 +24,35 @@ const Item = ({ id, fecha, tipoproducto, precio, formapago }) => {
   );
 };
 
+//TAREAS
+//Hay que hacer el "fetch" a la DDBB con useEffect, así se carga a la primera, creo
+//Hay que crear otra ruta para mostrar la lista de ventas ahí
+//Embellecer
+
+//Componente lista
 const List = () => {
+  const Ref = firestore.collection(`usuario/${auth.currentUser.uid}/ventas`);
+  const [Ventas] = useCollectionData(Ref, { idField: "id" });
+
   return (
     <div className="container">
       <div className="text-center">
         <h1>Lista de ventas</h1>
+        {Ventas &&
+          Ventas.map((item) => {
+            return (
+              <li clasName="list-group-item">
+                <Item
+                  key={item.id}
+                  fecha={item.fecha}
+                  tipoproducto={item.producto}
+                  precio={item.precio}
+                  formapago={item.formapago}
+                ></Item>
+              </li>
+            );
+          })}
       </div>
-      <Item
-        id="1"
-        fecha="26/6/21"
-        tipoproducto="funda"
-        precio="156"
-        formapago="credito"
-      ></Item>
-      <Item
-        id="1"
-        fecha="26/6/21"
-        tipoproducto="funda"
-        precio="156"
-        formapago="credito"
-      ></Item>
     </div>
   );
 };

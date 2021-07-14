@@ -29,26 +29,26 @@ const Nav = () => {
             <ul className="navbar-nav">
               <Link to="/">
                 <li className="nav-item">
-                  <a className="nav-link mx-2" aria-current="page" href="a">
-                    <i class="bi bi-shop h1"></i>
+                  <a className="nav-link mx-2" aria-current="page" href="c">
+                    <i className="bi bi-shop h1"></i>
                   </a>
                 </li>
               </Link>
               <Link to="ventas">
                 <li className="nav-item">
-                  <a className="nav-link mx-2" href="a">
-                    <i class="bi bi-clipboard-plus h1"></i>
+                  <a className="nav-link mx-2" href="b">
+                    <i className="bi bi-clipboard-plus h1"></i>
                   </a>
                 </li>
               </Link>
               <li className="nav-item">
-                <a className="nav-link mx-2" href="a">
-                  <i class="bi bi-wallet2 h1"></i>
+                <a className="nav-link mx-2" href="b">
+                  <i className="bi bi-wallet2 h1"></i>
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link mx-2" href="a">
-                  <i class="bi bi-list-ol h1"></i>
+                <a className="nav-link mx-2" href="n">
+                  <i className="bi bi-list-ol h1"></i>
                 </a>
               </li>
               <li className="nav-item">

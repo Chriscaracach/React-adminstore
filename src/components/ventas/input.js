@@ -1,59 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
+import { Formik, Field, Form } from "formik";
+//Firebase
+import firebase from "firebase";
+import { auth, firestore } from "../../firebase";
+
+//TAREAS PARA CUANDO VEAS ESTO
 
 const Input = () => {
+  //State de venta
+  //const [Venta, setVenta] = useState();
+
+  const Ref = firestore.collection(`usuario/${auth.currentUser.uid}/ventas`);
+
+  //Funcion que va a mandar todo a la BD
+  const enviarVenta = (values) => {
+    Ref.add({
+      fecha: values.fecha,
+      producto: values.producto,
+      precio: values.precio,
+      formapago: values.formapago,
+    });
+    console.log("venta cargada");
+  };
+
   return (
-    <>
-      <div className="text-center mt-3">
-        <h1>Nueva venta</h1>
-      </div>
-      <form>
-        <div className="container my-2 text-center border p-2">
-          <div className="row align-items-center">
-            <div className="col-2">
-              <input type="date" className="form-control" />
+    <div className="container">
+      <Formik
+        initialValues={{ fecha: "", producto: "", precio: "", formapago: "" }}
+        onSubmit={(values) => {
+          enviarVenta(values);
+        }}
+      >
+        <Form>
+          <div className="container text-center">
+            <div className="row my-2">
+              <label htmlFor="fecha">Fecha</label>
+              <Field name="fecha" type="date" />
             </div>
-            <div className="col-4">
-              <select
-                className="form-select"
-                aria-label="Default select example"
-              >
-                <option selected>Categoría del producto</option>
-                <option value="1">Cargador</option>
-                <option value="2">Servicio técnico</option>
-                <option value="3">Funda</option>
-              </select>
+            <div className="row my-2">
+              <label htmlFor="producto">Tipo de producto</label>
+              <Field name="producto" as="select">
+                <option value="cargador">Cargador</option>
+                <option value="funda">Funda</option>
+              </Field>
             </div>
-            <div className="col-2">
-              <div className="input-group">
-                <span className="input-group-text">$</span>
-                <input
-                  type="text"
-                  class="form-control"
-                  aria-label="Amount (to the nearest dollar)"
-                />
-              </div>
+            <div className="row my-2">
+              <label htmlFor="precio">Precio</label>
+              <Field name="precio" type="text" />
             </div>
-            <div className="col-2">
-              <select
-                className="form-select"
-                aria-label="Default select example"
-              >
-                <option selected>Forma de pago</option>
-                <option value="1">Efectivo</option>
-                <option value="2">Débito</option>
-                <option value="2">Crédito</option>
-                <option value="2">Mercado Pago</option>
-              </select>
+            <div className="row my-2">
+              <label htmlFor="formapago">Forma de pago</label>
+              <Field name="formapago" as="select">
+                <option value="contado">Contado</option>
+                <option value="debito">Débito</option>
+              </Field>
             </div>
-            <div className="col-2">
-              <button className="btn">
-                <i class="bi bi-check-circle h1"></i>
-              </button>
+            <div className="row my-5">
+              <button type="submit">Enviar</button>
             </div>
           </div>
-        </div>
-      </form>
-    </>
+        </Form>
+      </Formik>
+    </div>
   );
 };
 
