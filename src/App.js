@@ -1,9 +1,10 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 
 //Componentes
 import Nav from "./components/nav";
-import Ventas from "./components/ventas/ventas";
+import Input from "./components/ventas/input";
+import List from "./components/ventas/list";
 import Home from "./components/home/home";
 import Login from "./components/login";
 
@@ -13,7 +14,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 const App = () => {
   const [user] = useAuthState(auth);
-  const [usuario, setUsuario] = useState(user);
+  // const [usuario, setUsuario] = useState(user);
 
   return (
     <BrowserRouter>
@@ -23,7 +24,8 @@ const App = () => {
             <Nav></Nav>
             <Switch>
               <Route exact path="/" component={Home}></Route>
-              <Route path="/ventas" component={Ventas}></Route>
+              <Route path="/input" component={Input}></Route>
+              <Route path="/list" component={List}></Route>
             </Switch>
           </>
         ) : (

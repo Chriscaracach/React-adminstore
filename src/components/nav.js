@@ -9,22 +9,8 @@ const desloguearGoogle = () => {
 const Nav = () => {
   return (
     <div className="container">
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+      <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container-fluid">
-          <a className="navbar-brand" href="1">
-            Adminstore
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <Link to="/">
@@ -34,14 +20,21 @@ const Nav = () => {
                   </a>
                 </li>
               </Link>
-              <Link to="ventas">
+              <Link to="input">
                 <li className="nav-item">
                   <a className="nav-link mx-2" href="b">
                     <i className="bi bi-clipboard-plus h1"></i>
                   </a>
                 </li>
               </Link>
-              <li className="nav-item">
+              <Link to="list">
+                <li className="nav-item">
+                  <a className="nav-link mx-2" href="d">
+                    <i class="bi bi-list-ul h1"></i>
+                  </a>
+                </li>
+              </Link>
+              {/* <li className="nav-item">
                 <a className="nav-link mx-2" href="b">
                   <i className="bi bi-wallet2 h1"></i>
                 </a>
@@ -50,13 +43,13 @@ const Nav = () => {
                 <a className="nav-link mx-2" href="n">
                   <i className="bi bi-list-ol h1"></i>
                 </a>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <button
                   className="btn nav-link mx-2"
                   onClick={desloguearGoogle}
                 >
-                  Cerrar sesión
+                  <i className="bi bi-person-x h1"></i>
                 </button>
               </li>
             </ul>
