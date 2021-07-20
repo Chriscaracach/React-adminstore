@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 //Firebase
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const Home = () => {
   const [user] = useAuthState(auth);
-  const [usuario, setUsuario] = useState(user);
+
   return (
     <div className="container d-flex justify-content-center my-3">
       <div className="card text-center">
@@ -17,7 +17,7 @@ const Home = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="a">
+              <a className="nav-link" href="b">
                 Lista de tareas
               </a>
             </li>
@@ -25,11 +25,8 @@ const Home = () => {
         </div>
         <div className="card-body">
           <h5 className="card-title">Usuario activo</h5>
-          <img src={usuario.photoURL} alt="usuario" className="img-fluid" />
-          <p className="card-text">{usuario.displayName}</p>
-          {/* <a href="a" clasName="btn btn-primary">
-            Link a algo
-          </a> */}
+          <img src={user.photoURL} alt="usuario" className="img-fluid" />
+          <p className="card-text">{user.displayName}</p>
         </div>
       </div>
     </div>

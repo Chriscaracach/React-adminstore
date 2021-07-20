@@ -1,19 +1,15 @@
 import React from "react";
-//Fomulario
+//Importamos elementos de Formik y Yup para el formulario
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-//Firebase
-//import firebase from "firebase";
+//Importamos elementos de Firebase
 import { auth, firestore } from "../../firebase";
 
-//TAREAS PARA CUANDO VEAS ESTO
-//Cargar tipos de productos
-//Embellecer
-
 const Input = () => {
+  //Referencia a la Base de datos
   const Ref = firestore.collection(`usuario/${auth.currentUser.uid}/ventas`);
 
-  //Funcion que va a mandar todo a la BD
+  //Funcion que va a mandar todo a la Base de datos
   const enviarVenta = (values) => {
     Ref.add({
       fecha: values.fecha,
@@ -28,6 +24,7 @@ const Input = () => {
   return (
     <div className="container">
       <Formik
+        /*Valores iniciales del formulario*/
         initialValues={{
           fecha: "",
           producto: "",
@@ -35,6 +32,7 @@ const Input = () => {
           formapago: "",
           descripcion: "",
         }}
+        /*Esquema de validaciones*/
         validationSchema={Yup.object({
           fecha: Yup.string().required("Campo incompleto"),
           producto: Yup.string().required("Campo incompleto"),
@@ -44,6 +42,7 @@ const Input = () => {
           formapago: Yup.string().required("Campo incompleto"),
           descripcion: Yup.string(),
         })}
+        /*Funcion que se ejecuta cuando se envía el formulario*/
         onSubmit={(values) => {
           enviarVenta(values);
         }}
@@ -60,8 +59,16 @@ const Input = () => {
               <label htmlFor="producto">Tipo de producto</label>
               <Field name="producto" as="select">
                 <option>---</option>
-                <option value="cargador">Cargador</option>
-                <option value="funda">Funda</option>
+                <option value="Auriculares">Auriculares</option>
+                <option value="Cable">Cable</option>
+                <option value="Cargador">Cargador celular</option>
+                <option value="Cargador notebook">Cargador notebook</option>
+                <option value="Funda">Funda</option>
+                <option value="Parlante">Parlante</option>
+                <option value="Vidrio templado">Vidrio templado</option>
+                <option value="Pendrive-memoria">Pendrive / Memoria</option>
+                <option value="Servicio técnico">Servicio técnico</option>
+                <option value="Otros">Otros (aclarar en descripción)</option>
               </Field>
               <ErrorMessage name="producto" />
             </div>
@@ -74,8 +81,10 @@ const Input = () => {
               <label htmlFor="formapago">Forma de pago</label>
               <Field name="formapago" as="select">
                 <option>---</option>
-                <option value="contado">Contado</option>
-                <option value="debito">Débito</option>
+                <option value="Contado">Contado</option>
+                <option value="Credito">Crédito</option>
+                <option value="Mercadopago">Mercado Pago</option>
+                <option value="Debito">Débito</option>
               </Field>
               <ErrorMessage name="formapago" />
             </div>

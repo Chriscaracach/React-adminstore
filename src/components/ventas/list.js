@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { auth, firestore } from "../../firebase";
 
@@ -12,7 +12,9 @@ const Item = ({
   formapago,
   descripcion,
 }) => {
+  //Referencia a la base de datos
   const Ref = firestore.collection(`usuario/${auth.currentUser.uid}/ventas`);
+  //Función para borrar item de la lista
   const borrarVenta = (id) => {
     Ref.doc(id).delete();
   };
@@ -27,7 +29,7 @@ const Item = ({
         <button
           className="btn"
           onClick={() => {
-            borrarVenta(keyid);
+            borrarVenta(keyid); /*Función para borrar item*/
           }}
         >
           <i className="bi bi-trash h3"></i>
@@ -44,31 +46,33 @@ const Item = ({
             >
               Info
             </button>
+
+            {/*Modal*/}
             <div
-              class="modal fade"
+              className="modal fade"
               id="exampleModal"
               tabindex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title" id="exampleModalLabel">
                       Info
                     </h5>
                     <button
                       type="button"
-                      class="btn-close"
+                      className="btn-close"
                       data-bs-dismiss="modal"
                       aria-label="Close"
                     ></button>
                   </div>
-                  <div class="modal-body">{descripcion}</div>
-                  <div class="modal-footer">
+                  <div className="modal-body">{descripcion}</div>
+                  <div className="modal-footer">
                     <button
                       type="button"
-                      class="btn btn-secondary"
+                      className="btn btn-secondary"
                       data-bs-dismiss="modal"
                     >
                       Cerrar
@@ -84,12 +88,6 @@ const Item = ({
   );
 };
 
-//TAREAS
-//Configurar boton eliminar, revisar diseño, tamaño
-//Mejorar formato de fecha
-//Mejorar columnas, revisar responsive
-//Embellecer
-
 //Componente lista
 const List = () => {
   //Referencia a la Base de datos
@@ -100,7 +98,6 @@ const List = () => {
   if (Ventas != null) {
     Ventas = Ventas.sort((a, b) => (a.fecha < b.fecha ? 1 : -1));
   }
-  useEffect(() => {}, []);
   return (
     <div className="container text-center my-4">
       <h1 className="my-2">Lista de ventas</h1>
@@ -118,6 +115,7 @@ const List = () => {
             </tr>
           </thead>
           <tbody>
+            {/*Mapeo del array con los elementos obtenidos de la base de datos*/}
             {Ventas &&
               Ventas.map((item, i) => {
                 return (

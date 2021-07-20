@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-// import { useState } from "react";
 
 //Componentes
 import Nav from "./components/nav";
@@ -13,12 +12,13 @@ import { auth } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 const App = () => {
+  //En éste array se guardan los datos de la autenticación para usarlos después
   const [user] = useAuthState(auth);
-  // const [usuario, setUsuario] = useState(user);
 
   return (
     <BrowserRouter>
       <div className="App">
+        {/*Con el operador ternario mostramos la app si el usuario se autenticó, sino mostramos el login*/}
         {user ? (
           <>
             <Nav></Nav>

@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { auth } from "../firebase";
 
+//Ésta función sirve para cerrar la sesión de la cuenta de Google
 const desloguearGoogle = () => {
   auth.signOut();
 };
@@ -14,40 +15,24 @@ const Nav = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <Link to="/">
-                <li className="nav-item">
-                  <a className="nav-link mx-2" aria-current="page" href="c">
-                    <i className="bi bi-shop h1"></i>
-                  </a>
+                <li className="nav-item m-2">
+                  <i className="bi bi-shop h1 nav-link"></i>
                 </li>
               </Link>
               <Link to="input">
-                <li className="nav-item">
-                  <a className="nav-link mx-2" href="b">
-                    <i className="bi bi-clipboard-plus h1"></i>
-                  </a>
+                <li className="nav-item m-2">
+                  <i className="bi bi-clipboard-plus h1 nav-link"></i>
                 </li>
               </Link>
               <Link to="list">
-                <li className="nav-item">
-                  <a className="nav-link mx-2" href="d">
-                    <i class="bi bi-list-ul h1"></i>
-                  </a>
+                <li className="nav-item m-2">
+                  <i className="bi bi-list-ul h1 nav-link"></i>
                 </li>
               </Link>
-              {/* <li className="nav-item">
-                <a className="nav-link mx-2" href="b">
-                  <i className="bi bi-wallet2 h1"></i>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link mx-2" href="n">
-                  <i className="bi bi-list-ol h1"></i>
-                </a>
-              </li> */}
-              <li className="nav-item">
+              <li className="nav-item m-2">
                 <button
-                  className="btn nav-link mx-2"
-                  onClick={desloguearGoogle}
+                  className="btn nav-link"
+                  onClick={desloguearGoogle} //Función para desloguearse
                 >
                   <i className="bi bi-person-x h1"></i>
                 </button>
