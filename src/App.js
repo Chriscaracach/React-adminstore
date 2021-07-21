@@ -6,6 +6,7 @@ import Input from "./components/ventas/input";
 import List from "./components/ventas/list";
 import Home from "./components/home/home";
 import Login from "./components/login";
+import Proveedores from "./components/proveedores/proveedores";
 
 //Firebase
 import { auth } from "./firebase";
@@ -26,6 +27,7 @@ const App = () => {
               <Route exact path="/" component={Home}></Route>
               <Route path="/input" component={Input}></Route>
               <Route path="/list" component={List}></Route>
+              <Route path="/proveedores" component={Proveedores}></Route>
             </Switch>
           </>
         ) : (

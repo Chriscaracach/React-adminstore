@@ -29,6 +29,11 @@ const Nav = () => {
                   <i className="bi bi-list-ul h1 nav-link"></i>
                 </li>
               </Link>
+              <Link to="proveedores">
+                <li className="nav-item m-2">
+                  <i class="bi bi-layout-text-sidebar-reverse h1 nav-link"></i>
+                </li>
+              </Link>
               <li className="nav-item m-2">
                 <button
                   className="btn nav-link"
