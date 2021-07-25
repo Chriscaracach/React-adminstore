@@ -13,7 +13,7 @@ import Displaycomprasproveedores from "./displayComprasProveedores";
 const Proveedores = () => {
   return (
     <BrowserRouter>
-      <div className="container d-flex my-3">
+      <div className="container d-flex my-3 p-2">
         <div className="container w-25 h-100">
           <Acciones></Acciones>
         </div>

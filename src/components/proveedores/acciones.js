@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { auth, firestore } from "../../firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 //Tareas para cuando veas esto
 //Configurar otro botón
@@ -15,6 +16,8 @@ const Acciones = () => {
   const refComprasProveedores = firestore.collection(
     `usuario/${auth.currentUser.uid}/comprasproveedores`
   );
+  //Referencia para obtener la lista de proveedores y mostrarla en el select
+  let [Proveedores] = useCollectionData(refProveedores, { idField: "id" });
   //Función que envía los datos de un nuevo proveedor a la base de datos
   const enviarNuevoProveedor = (values) => {
     refProveedores.add({
@@ -197,8 +200,14 @@ const Acciones = () => {
                       <label htmlFor="proveedor">Proveedor</label>
                       <Field name="proveedor" as="select">
                         <option>---</option>
-                        {/*Acá va un mapeo de los proveedores sacados de l BBDD*/}
-                        <option value="Proveedor1">Proveedor 1</option>
+                        {Proveedores &&
+                          Proveedores.map((item, i) => {
+                            return (
+                              <option value={item.proveedor} key={item.id}>
+                                {item.proveedor}
+                              </option>
+                            );
+                          })}
                       </Field>
                       <ErrorMessage name="formapago" />
                     </div>
