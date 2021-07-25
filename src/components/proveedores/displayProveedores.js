@@ -95,9 +95,9 @@ const Displayproveedores = () => {
   );
   let [Proveedores] = useCollectionData(refProveedores, { idField: "id" });
   return (
-    <div className="container text-center my-4">
+    <div className="container text-center my-2 bg-light bg-gradient p-2 rounded">
       <div className="table-responsive">
-        <table className="table table-hover align-middle">
+        <table className="table table-hover table-sm align-middle">
           <thead>
             <tr>
               <th scope="col">#</th>

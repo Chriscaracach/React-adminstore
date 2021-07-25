@@ -4,17 +4,17 @@ import { Link } from "react-router-dom";
 const Navtabs = () => {
   return (
     <div>
-      <ul className="nav nav-tabs">
-        <Link to="/listaproveedores">
-          <li className="nav-item">
-            <p className="nav-link">Proveedores</p>
-          </li>
-        </Link>
-        <Link to="/comprasproveedores">
-          <li className="nav-item">
-            <p className="nav-link">Compras</p>
-          </li>
-        </Link>
+      <ul className="nav nav-tabs navbar-light bg-info rounded">
+        <li className="nav-item">
+          <Link to="/listaproveedores" style={{ textDecoration: "none" }}>
+            <p className="text-dark nav-link">Proveedores</p>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/comprasproveedores" style={{ textDecoration: "none" }}>
+            <p className="text-dark nav-link">Compras</p>
+          </Link>
+        </li>
       </ul>
     </div>
   );

@@ -10,7 +10,7 @@ const desloguearGoogle = () => {
 const Nav = () => {
   return (
     <div className="container">
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+      <nav className="navbar navbar-expand navbar-light bg-info">
         <div className="container-fluid">
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">

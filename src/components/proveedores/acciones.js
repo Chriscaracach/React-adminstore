@@ -39,28 +39,24 @@ const Acciones = () => {
   };
   return (
     <div>
-      <ul className="list-group">
-        <li className="list-group-item">
-          <button
-            type="button"
-            class="btn"
-            data-bs-toggle="modal"
-            data-bs-target="#modalProveedorNuevo"
-          >
-            Nuevo proveedor
-          </button>
-        </li>
-        <li className="list-group-item">
-          <button
-            type="button"
-            class="btn"
-            data-bs-toggle="modal"
-            data-bs-target="#modalCompraNueva"
-          >
-            Nueva compra
-          </button>
-        </li>
-      </ul>
+      <div class="list-group bg-dark p-1">
+        <button
+          type="button"
+          class="btn btn-success list-group-item my-1"
+          data-bs-toggle="modal"
+          data-bs-target="#modalProveedorNuevo"
+        >
+          Nuevo proveedor
+        </button>
+        <button
+          type="button"
+          class="btn btn-success list-group-item my-1"
+          data-bs-toggle="modal"
+          data-bs-target="#modalCompraNueva"
+        >
+          Nueva compra
+        </button>
+      </div>
       {/*Modales*/}
       <div
         class="modal fade"

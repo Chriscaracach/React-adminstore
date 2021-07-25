@@ -24,7 +24,7 @@ const Item = ({
       <th>{id}</th>
       <th>{fecha}</th>
       <th>{proveedor}</th>
-      <th>{monto}</th>
+      <th>${monto}</th>
       <th>{formapago}</th>
       <th>
         <button
@@ -97,9 +97,9 @@ const Displaycomprasproveedores = () => {
     idField: "id",
   });
   return (
-    <div className="container text-center my-4">
+    <div className="container text-center my-2 bg-light bg-gradient p-2 rounded">
       <div className="table-responsive">
-        <table className="table table-hover align-middle">
+        <table className="table table-hover table-sm align-middle">
           <thead>
             <tr>
               <th scope="col">#</th>
