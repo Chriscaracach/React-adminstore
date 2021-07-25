@@ -8,7 +8,6 @@ import Displayproveedores from "./displayProveedores";
 import Displaycomprasproveedores from "./displayComprasProveedores";
 
 //TAREAS
-//No funciona el router, revisar. Encima hay un error en displayProveedores, qué onda?
 //Configurar acciones de botones
 //
 const Proveedores = () => {
