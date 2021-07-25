@@ -2,9 +2,6 @@ import React from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { auth, firestore } from "../../firebase";
 
-const refProveedores = firestore.collection(
-  `usuario/${auth.currentUser.uid}/proveedores`
-);
 //Item
 const Item = ({
   keyid,
@@ -15,6 +12,9 @@ const Item = ({
   mail,
   listaprecios,
 }) => {
+  let refProveedores = firestore.collection(
+    `usuario/${auth.currentUser.uid}/proveedores`
+  );
   //Función para borrar item de la lista
   const borrarProveedor = (id) => {
     refProveedores.doc(id).delete();
@@ -52,7 +52,7 @@ const Item = ({
             <div
               className="modal fade"
               id="modalDescripcion"
-              tabindex="-1"
+              tabIndex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
@@ -90,6 +90,9 @@ const Item = ({
 };
 
 const Displayproveedores = () => {
+  let refProveedores = firestore.collection(
+    `usuario/${auth.currentUser.uid}/proveedores`
+  );
   let [Proveedores] = useCollectionData(refProveedores, { idField: "id" });
   return (
     <div className="container text-center my-4">

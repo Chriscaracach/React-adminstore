@@ -33,6 +33,7 @@ const Acciones = () => {
       proveedor: values.proveedor,
       monto: values.monto,
       formapago: values.formapago,
+      descripcion: values.descripcion,
     });
     alert("Compra a proveedor cargada exitosamente");
   };
@@ -64,7 +65,7 @@ const Acciones = () => {
       <div
         class="modal fade"
         id="modalProveedorNuevo"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -148,7 +149,7 @@ const Acciones = () => {
       <div
         class="modal fade"
         id="modalCompraNueva"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
@@ -174,6 +175,7 @@ const Acciones = () => {
                   proveedor: "",
                   monto: "",
                   formapago: "",
+                  descripcion: "",
                 }}
                 /*Esquema de validaciones*/
                 validationSchema={Yup.object({
@@ -181,6 +183,7 @@ const Acciones = () => {
                   proveedor: Yup.string().required("Campo incompleto"),
                   monto: Yup.string().required("Campo incompleto"),
                   formapago: Yup.string(),
+                  descripcion: Yup.string(),
                 })}
                 /*Funcion que se ejecuta cuando se envía el formulario*/
                 onSubmit={(values) => {
@@ -218,6 +221,11 @@ const Acciones = () => {
                         <option value="Debito">Débito</option>
                       </Field>
                       <ErrorMessage name="formapago" />
+                    </div>
+                    <div className="row my-2">
+                      <label htmlFor="descripcion">Descripcion</label>
+                      <Field name="descripcion" as="textarea" />
+                      <ErrorMessage name="descripcion" />
                     </div>
                     <div className="row my-5">
                       <button type="submit">Enviar</button>
