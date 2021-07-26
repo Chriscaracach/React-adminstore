@@ -2,7 +2,7 @@ import React from "react";
 //Importamos Firebase
 import firebase from "firebase/app";
 import { auth } from "../firebase";
-import HomeImg from "../img/img1.png";
+import HomeImg from "../img/logo.png";
 
 const Login = () => {
   //Ésta función sirve para iniciar sesión con Google
@@ -21,7 +21,6 @@ const Login = () => {
           />
         </div>
         <div className="col-7">
-          <p className="lead display-6">ADMINSTORE</p>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
               <p className="small">Llevá un control de tus ventas</p>

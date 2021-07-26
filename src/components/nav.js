@@ -1,47 +1,45 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { auth } from "../firebase";
-
-//Ésta función sirve para cerrar la sesión de la cuenta de Google
-const desloguearGoogle = () => {
-  auth.signOut();
-};
 
 const Nav = () => {
   return (
     <div className="container">
-      <nav className="navbar navbar-expand navbar-light bg-info">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-success">
         <div className="container-fluid">
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <Link to="/">
-                <li className="nav-item m-2">
-                  <i className="bi bi-shop h1 nav-link"></i>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <li className="nav-item nav-link mt-1">
+                  <p className="lead">
+                    <i className="bi bi-shop mx-2"></i>Inicio
+                  </p>
                 </li>
               </Link>
-              <Link to="input">
-                <li className="nav-item m-2">
-                  <i className="bi bi-clipboard-plus h1 nav-link"></i>
+              <Link to="input" style={{ textDecoration: "none" }}>
+                <li className="nav-item nav-link mt-1">
+                  <p className="lead">
+                    <i className="bi bi-clipboard-plus mx-2"></i>Ventas
+                  </p>
                 </li>
               </Link>
-              <Link to="list">
-                <li className="nav-item m-2">
-                  <i className="bi bi-list-ul h1 nav-link"></i>
+              <Link to="proveedores" style={{ textDecoration: "none" }}>
+                <li className="nav-item nav-link mt-1">
+                  <p className="lead">
+                    <i class="bi bi-people mx-2"></i>Proveedores
+                  </p>
                 </li>
               </Link>
-              <Link to="proveedores">
-                <li className="nav-item m-2">
-                  <i class="bi bi-layout-text-sidebar-reverse h1 nav-link"></i>
-                </li>
-              </Link>
-              <li className="nav-item m-2">
-                <button
-                  className="btn nav-link"
-                  onClick={desloguearGoogle} //Función para desloguearse
-                >
-                  <i className="bi bi-person-x h1"></i>
-                </button>
-              </li>
             </ul>
           </div>
         </div>
