@@ -99,7 +99,7 @@ const Displaycomprasproveedores = () => {
     idField: "id",
   });
   return (
-    <div className="container text-center my-2 p-2 rounded">
+    <div className="container text-center p-2 rounded">
       {ComprasProveedores ? (
         <div className="table-responsive">
           <table className="table table-hover table-sm align-middle">

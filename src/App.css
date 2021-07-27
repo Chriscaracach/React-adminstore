@@ -1,3 +1,28 @@
 body {
   font-family: "Roboto", sans-serif;
 }
+
+/*MQ*/
+@media (min-width: 768px) {
+  #ventas__container {
+    display: flex;
+  }
+  #ventas__input__container {
+    width: 30% !important;
+  }
+  #ventas__display_container {
+    width: 100%;
+  }
+  #proveedores__container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #proveedores__acciones__container {
+    width: 25%;
+  }
+
+  #proveedores__display__container {
+    width: 75%;
+  }
+}

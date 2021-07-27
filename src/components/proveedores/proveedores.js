@@ -13,11 +13,14 @@ import Displaycomprasproveedores from "./displayComprasProveedores";
 const Proveedores = () => {
   return (
     <BrowserRouter>
-      <div className="container d-flex my-3 p-2">
-        <div className="container w-25 h-100">
+      <div className="container my-3 p-2" id="proveedores__container">
+        <div
+          className="container w-50 h-100 mb-2"
+          id="proveedores__acciones__container"
+        >
           <Acciones></Acciones>
         </div>
-        <div className="container w-75 h-100">
+        <div className="container w-100" id="proveedores__display__container">
           {/*Nav tab*/}
           <Navtabs></Navtabs>
 
