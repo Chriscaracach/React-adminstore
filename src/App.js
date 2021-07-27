@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import "./App.css";
+import "../src/App.css";
 
 //Componentes
 import Nav from "./components/nav";
