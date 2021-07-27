@@ -22,7 +22,7 @@ const Input = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container bg-light p-1">
       <Formik
         /*Valores iniciales del formulario*/
         initialValues={{
@@ -48,8 +48,8 @@ const Input = () => {
         }}
       >
         <Form>
-          <div className="container w-50 my-4 text-center">
-            <h1 className="my-2">Nueva venta</h1>
+          <div className="container my-4 text-center">
+            <h3 className="my-2">Nueva venta</h3>
             <div className="row my-2">
               <label htmlFor="fecha">Fecha</label>
               <Field name="fecha" type="date" />
@@ -94,7 +94,9 @@ const Input = () => {
               <ErrorMessage name="descripcion" />
             </div>
             <div className="row my-5">
-              <button type="submit">Enviar</button>
+              <button className="btn btn-success" type="submit">
+                Cargar
+              </button>
             </div>
           </div>
         </Form>

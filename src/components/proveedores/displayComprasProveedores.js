@@ -1,6 +1,8 @@
 import React from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { auth, firestore } from "../../firebase";
+//import imgcomprasproveedores from "../../img/imgcomprasproveedores.png";
+import Loader from "../loader";
 
 //Item
 const Item = ({
@@ -97,40 +99,52 @@ const Displaycomprasproveedores = () => {
     idField: "id",
   });
   return (
-    <div className="container text-center my-2 bg-light bg-gradient p-2 rounded">
-      <div className="table-responsive">
-        <table className="table table-hover table-sm align-middle">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Fecha</th>
-              <th scope="col">Proveedor</th>
-              <th scope="col">Monto</th>
-              <th scope="col">Forma de pago</th>
-              <th scope="col">Eliminar</th>
-              <th scope="col">Info</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/*Mapeo del array con los elementos obtenidos de la base de datos*/}
-            {ComprasProveedores &&
-              ComprasProveedores.map((item, i) => {
-                return (
-                  <Item
-                    keyid={item.id}
-                    key={item.id}
-                    id={i}
-                    fecha={item.fecha}
-                    proveedor={item.proveedor}
-                    monto={item.monto}
-                    formapago={item.formapago}
-                    descripcion={item.descripcion}
-                  ></Item>
-                );
-              })}
-          </tbody>
-        </table>
-      </div>
+    <div className="container text-center my-2 p-2 rounded">
+      {ComprasProveedores ? (
+        <div className="table-responsive">
+          <table className="table table-hover table-sm align-middle">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Proveedor</th>
+                <th scope="col">Monto</th>
+                <th scope="col">Forma de pago</th>
+                <th scope="col">Eliminar</th>
+                <th scope="col">Info</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/*Mapeo del array con los elementos obtenidos de la base de datos*/}
+              {ComprasProveedores &&
+                ComprasProveedores.map((item, i) => {
+                  return (
+                    <Item
+                      keyid={item.id}
+                      key={item.id}
+                      id={i}
+                      fecha={item.fecha}
+                      proveedor={item.proveedor}
+                      monto={item.monto}
+                      formapago={item.formapago}
+                      descripcion={item.descripcion}
+                    ></Item>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <>
+          {/* <img
+            src={imgcomprasproveedores}
+            alt="No hay compras cargadas"
+            className="img-fluid w-50 h-50 m-auto"
+          />
+          <h3>No tenés compras cargadas</h3> */}
+          <Loader></Loader>
+        </>
+      )}
     </div>
   );
 };

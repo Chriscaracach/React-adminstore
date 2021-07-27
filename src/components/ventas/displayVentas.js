@@ -1,6 +1,8 @@
 import React from "react";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { auth, firestore } from "../../firebase";
+//import imgventas from "../../img/imgventas.png";
+import Loader from "../loader";
 
 //Componente Item
 const Item = ({
@@ -89,7 +91,7 @@ const Item = ({
 };
 
 //Componente lista
-const List = () => {
+const DisplayVentas = () => {
   //Referencia a la Base de datos
   const Ref = firestore.collection(`usuario/${auth.currentUser.uid}/ventas`);
   //Guardamos lo que obtenemos de la base de datos en un array
@@ -100,42 +102,58 @@ const List = () => {
   }
   return (
     <div className="container text-center my-4">
-      <h1 className="my-2">Lista de ventas</h1>
-      <div className="table-responsive">
-        <table className="table table-hover align-middle">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Fecha</th>
-              <th scope="col">Tipo</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Pago</th>
-              <th scope="col">Eliminar</th>
-              <th scope="col">Info</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/*Mapeo del array con los elementos obtenidos de la base de datos*/}
-            {Ventas &&
-              Ventas.map((item, i) => {
-                return (
-                  <Item
-                    keyid={item.id}
-                    key={item.id}
-                    id={i}
-                    fecha={item.fecha}
-                    tipoproducto={item.producto}
-                    precio={item.precio}
-                    formapago={item.formapago}
-                    descripcion={item.descripcion}
-                  ></Item>
-                );
-              })}
-          </tbody>
-        </table>
-      </div>
+      {Ventas ? (
+        <>
+          <h1 className="my-2">Lista de ventas</h1>
+          <div className="table-responsive">
+            <table className="table table-sm table-hover align-middle">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Precio</th>
+                  <th scope="col">Pago</th>
+                  <th scope="col">Eliminar</th>
+                  <th scope="col">Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/*Mapeo del array con los elementos obtenidos de la base de datos*/}
+                {Ventas &&
+                  Ventas.map((item, i) => {
+                    return (
+                      <Item
+                        keyid={item.id}
+                        key={item.id}
+                        id={i}
+                        fecha={item.fecha}
+                        tipoproducto={item.producto}
+                        precio={item.precio}
+                        formapago={item.formapago}
+                        descripcion={item.descripcion}
+                      ></Item>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
+        </>
+      ) : (
+        <>
+          {/* <img
+            src={imgventas}
+            alt="No hay ventas cargadas"
+            className="img-fluid w-50 h-50 m-auto"
+          />
+          <h3>No tenés ventas cargadas</h3> 
+          NO FUNCIONÓ
+          */}
+          <Loader></Loader>
+        </>
+      )}
     </div>
   );
 };
 
-export default List;
+export default DisplayVentas;

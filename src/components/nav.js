@@ -26,7 +26,7 @@ const Nav = () => {
                   </p>
                 </li>
               </Link>
-              <Link to="input" style={{ textDecoration: "none" }}>
+              <Link to="ventas" style={{ textDecoration: "none" }}>
                 <li className="nav-item nav-link mt-1">
                   <p className="lead">
                     <i className="bi bi-clipboard-plus mx-2"></i>Ventas
