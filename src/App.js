@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter, Route, Switch } from "react-router-dom";
 import "../src/App.css";
 
 //Componentes
@@ -17,7 +17,7 @@ const App = () => {
   const [user] = useAuthState(auth);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="App">
         {/*Con el operador ternario mostramos la app si el usuario se autenticó, sino mostramos el login*/}
         {user ? (
@@ -33,7 +33,7 @@ const App = () => {
           <Login></Login>
         )}
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
