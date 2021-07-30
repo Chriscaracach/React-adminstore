@@ -43,8 +43,9 @@ const Input = () => {
           descripcion: Yup.string(),
         })}
         /*Funcion que se ejecuta cuando se envía el formulario*/
-        onSubmit={(values) => {
+        onSubmit={(values, { resetForm }) => {
           enviarVenta(values);
+          resetForm({ values: "" });
         }}
       >
         <Form>
