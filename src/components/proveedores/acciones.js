@@ -3,13 +3,22 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { auth, firestore } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
+//Bootstrap
+import "bootstrap/dist/css/bootstrap.min.css";
+import Modal from "react-bootstrap/Modal";
 
 //Tareas para cuando veas esto
 //Configurar otro botón
 //Armar tablas para mostrar
 const Acciones = () => {
   //State para controlar cuándo se cierran/abren los modales
-  const [clasesModal, setClasesModal] = useState("modal fade");
+  const [showProveedores, setShowProveedores] = useState(false);
+  const [showCompras, setShowCompras] = useState(false);
+
+  const handleCloseProveedores = () => setShowProveedores(false);
+  const handleShowProveedores = () => setShowProveedores(true);
+  const handleCloseCompras = () => setShowCompras(false);
+  const handleShowCompras = () => setShowCompras(true);
   //Referencia a la colección proveedores en a base de datos
   const refProveedores = firestore.collection(
     `usuario/${auth.currentUser.uid}/proveedores`
@@ -36,6 +45,7 @@ const Acciones = () => {
         listaprecios: values.listaprecios,
       });
       alert("Proveedor cargado exitosamente");
+      handleCloseProveedores();
     } else {
       alert("El proveedor ya existe");
     }
@@ -50,6 +60,7 @@ const Acciones = () => {
       descripcion: values.descripcion,
     });
     alert("Compra a proveedor cargada exitosamente");
+    handleCloseCompras();
   };
   return (
     <div className="container">
@@ -59,6 +70,7 @@ const Acciones = () => {
           className="btn btn-success my-1 w-100 proveedores__acciones__button"
           data-bs-toggle="modal"
           data-bs-target="#modalProveedorNuevo"
+          onClick={handleShowProveedores}
         >
           Nuevo proveedor
         </button>
@@ -68,6 +80,7 @@ const Acciones = () => {
           className="btn btn-success my-1 w-100 proveedores__acciones__button"
           data-bs-toggle="modal"
           data-bs-target="#modalCompraNueva"
+          onClick={handleShowCompras}
         >
           Nueva compra
         </button>
@@ -76,12 +89,11 @@ const Acciones = () => {
       {/*Modales*/}
 
       <>
-        <div
-          className="modal"
-          id="modalProveedorNuevo"
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
+        <Modal
+          show={showProveedores}
+          onHide={handleCloseProveedores}
+          backdrop="static"
+          keyboard={false}
         >
           <div class="modal-dialog">
             <div class="modal-content">
@@ -94,6 +106,7 @@ const Acciones = () => {
                   class="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
+                  onClick={handleCloseProveedores}
                 ></button>
               </div>
               <div class="modal-body">
@@ -157,13 +170,12 @@ const Acciones = () => {
               </div>
             </div>
           </div>
-        </div>
-        <div
-          class="modal"
-          id="modalCompraNueva"
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
+        </Modal>
+        <Modal
+          show={showCompras}
+          onHide={handleCloseCompras}
+          backdrop="static"
+          keyboard={false}
         >
           <div class="modal-dialog">
             <div class="modal-content">
@@ -176,6 +188,7 @@ const Acciones = () => {
                   class="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
+                  onClick={handleCloseCompras}
                 ></button>
               </div>
 
@@ -246,7 +259,9 @@ const Acciones = () => {
                         <ErrorMessage name="descripcion" />
                       </div>
                       <div className="row my-5">
-                        <button type="submit">Enviar</button>
+                        <button type="submit" onClick={handleCloseCompras}>
+                          Enviar
+                        </button>
                       </div>
                     </div>
                   </Form>
@@ -254,7 +269,7 @@ const Acciones = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Modal>
       </>
     </div>
   );
