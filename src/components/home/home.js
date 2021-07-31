@@ -32,6 +32,10 @@ const Home = () => {
               <h5 class="card-title">{user.displayName}</h5>
               <p class="card-text">Bienvenido/a a Adminstore</p>
               <p class="card-text">
+                No olvides personalizar las categorías de tus productos en el
+                menú "Categorías"
+              </p>
+              <p class="card-text">
                 <small class="text-muted">
                   <button className="btn btn-danger" onClick={desloguearGoogle}>
                     Cerrar Sesión

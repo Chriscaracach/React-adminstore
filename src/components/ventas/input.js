@@ -4,10 +4,15 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 //Importamos elementos de Firebase
 import { auth, firestore } from "../../firebase";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const Input = () => {
   //Referencia a la Base de datos
   const Ref = firestore.collection(`usuario/${auth.currentUser.uid}/ventas`);
+  const Refcategorias = firestore.collection(
+    `usuario/${auth.currentUser.uid}/categorias`
+  );
+  const [Categorias] = useCollectionData(Refcategorias, { idField: "id" });
 
   //Funcion que va a mandar todo a la Base de datos
   const enviarVenta = (values) => {
@@ -60,16 +65,12 @@ const Input = () => {
               <label htmlFor="producto">Tipo de producto</label>
               <Field name="producto" as="select">
                 <option>---</option>
-                <option value="Auriculares">Auriculares</option>
-                <option value="Cable">Cable</option>
-                <option value="Cargador">Cargador celular</option>
-                <option value="Cargador notebook">Cargador notebook</option>
-                <option value="Funda">Funda</option>
-                <option value="Parlante">Parlante</option>
-                <option value="Vidrio templado">Vidrio templado</option>
-                <option value="Pendrive-memoria">Pendrive / Memoria</option>
-                <option value="Servicio técnico">Servicio técnico</option>
-                <option value="Otros">Otros (aclarar en descripción)</option>
+                {Categorias &&
+                  Categorias.map((item) => {
+                    return (
+                      <option value={item.categoria}>{item.categoria}</option>
+                    );
+                  })}
               </Field>
               <ErrorMessage name="producto" />
             </div>

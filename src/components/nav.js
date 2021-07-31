@@ -40,6 +40,13 @@ const Nav = () => {
                   </p>
                 </li>
               </Link>
+              <Link to="categoriasproductos" style={{ textDecoration: "none" }}>
+                <li className="nav-item nav-link mt-1">
+                  <p className="lead">
+                    <i class="bi bi-pencil mx-2"></i>Categorías
+                  </p>
+                </li>
+              </Link>
             </ul>
           </div>
         </div>

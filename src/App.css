@@ -25,4 +25,15 @@ body {
   #proveedores__display__container {
     width: 75%;
   }
+
+  #categorias__container {
+    display: flex;
+    flex-direction: row;
+  }
+  #categorias__container__input {
+    width: 25% !important;
+  }
+  #categorias__container__list {
+    width: 75% !important;
+  }
 }
