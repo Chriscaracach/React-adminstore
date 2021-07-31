@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 //Importamos elementos de Formik y Yup para el formulario
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -7,6 +7,7 @@ import { auth, firestore } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const Input = () => {
+  const [cargaVentaExitosa, setCargaVentaExitosa] = useState(false);
   //Referencia a la Base de datos
   const Ref = firestore.collection(`usuario/${auth.currentUser.uid}/ventas`);
   const Refcategorias = firestore.collection(
@@ -23,7 +24,10 @@ const Input = () => {
       formapago: values.formapago,
       descripcion: values.descripcion,
     });
-    alert("Venta cargada exitosamente");
+    setCargaVentaExitosa(true);
+    setTimeout(() => {
+      setCargaVentaExitosa(false);
+    }, 3000);
   };
 
   return (
@@ -95,7 +99,16 @@ const Input = () => {
               <Field name="descripcion" as="textarea" />
               <ErrorMessage name="descripcion" />
             </div>
-            <div className="row my-5">
+            {cargaVentaExitosa ? (
+              <div
+                class="alert alert-info d-flex align-items-center p-2 my-1"
+                role="alert"
+              >
+                <div>Venta cargada exitosamente</div>
+              </div>
+            ) : null}
+
+            <div className="row my-4">
               <button className="btn btn-success" type="submit">
                 Cargar
               </button>

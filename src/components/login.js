@@ -11,16 +11,16 @@ const Login = () => {
   };
 
   return (
-    <div className="container text-center border border-2 rounded my-3 p-3 w-50 h-50">
+    <div className="container text-center border border-2 rounded my-3 p-3 w-75 h-75">
       <div className="row my-2">
-        <div className="col-5">
+        <div className="col-md-5">
           <img
             src={HomeImg}
             alt="Imagen Home"
             className="img-fluid d-block mx-auto"
           />
         </div>
-        <div className="col-7">
+        <div className="col-md-7">
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
               <p className="small">Llevá un control de tus ventas</p>

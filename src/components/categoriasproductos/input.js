@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { auth, firestore } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
 const Input = () => {
+  const [cargaCategoriaExitosa, setCargaCategoriaExitosa] = useState(false);
+  const [categoriaExiste, setCategoriaExiste] = useState(false);
   //Referencia a la base de datos
   const Ref = firestore.collection(
     `usuario/${auth.currentUser.uid}/categorias`
@@ -19,8 +21,15 @@ const Input = () => {
       Ref.add({
         categoria: values.categoria,
       });
+      setCargaCategoriaExitosa(true);
+      setTimeout(() => {
+        setCargaCategoriaExitosa(false);
+      }, 3000);
     } else {
-      alert("La categoría ya existe");
+      setCategoriaExiste(true);
+      setTimeout(() => {
+        setCategoriaExiste(false);
+      }, 3000);
     }
   };
   return (
@@ -52,6 +61,26 @@ const Input = () => {
               <button className="btn btn-success" type="submit">
                 Cargar
               </button>
+            </div>
+            <div className="container">
+              {cargaCategoriaExitosa ? (
+                <div
+                  class="alert alert-info d-flex align-items-center p-2 my-1"
+                  role="alert"
+                >
+                  <i class="bi bi-check-circle mx-1"></i>
+                  <div>Categoría cargada exitosamente</div>
+                </div>
+              ) : null}
+              {categoriaExiste ? (
+                <div
+                  class="alert alert-danger d-flex align-items-center p-2 my-1"
+                  role="alert"
+                >
+                  <i class="bi bi-x-circle mx-1"></i>
+                  <div>La categoría ya existe</div>
+                </div>
+              ) : null}
             </div>
           </div>
         </Form>

@@ -15,7 +15,7 @@ const Proveedores = () => {
     <BrowserRouter>
       <div className="container my-3 p-2" id="proveedores__container">
         <div
-          className="container w-50 h-100 mb-2"
+          className="container w-75 h-100 mb-2"
           id="proveedores__acciones__container"
         >
           <Acciones></Acciones>

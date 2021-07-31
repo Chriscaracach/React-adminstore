@@ -4,9 +4,7 @@ import { auth, firestore } from "../../firebase";
 import Loader from "../loader";
 
 const Item = ({ categoria, keyid }) => {
-  const Ref = firestore.collection(
-    `usuario/${auth.currentUser.uid}/categorias`
-  );
+  let Ref = firestore.collection(`usuario/${auth.currentUser.uid}/categorias`);
   const borrarCategoria = (id) => {
     Ref.doc(id).delete();
   };
@@ -28,13 +26,11 @@ const Item = ({ categoria, keyid }) => {
 };
 
 const List = () => {
-  const Ref = firestore.collection(
-    `usuario/${auth.currentUser.uid}/categorias`
-  );
+  let Ref = firestore.collection(`usuario/${auth.currentUser.uid}/categorias`);
   let [Categorias] = useCollectionData(Ref, { idField: "id" });
 
   return (
-    <div className="container border rounded">
+    <div className="container">
       <div className="text-center">
         <h3>Categorías</h3>
       </div>

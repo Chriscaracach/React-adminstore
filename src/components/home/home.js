@@ -17,16 +17,16 @@ const Home = () => {
   return (
     <div className="container d-flex justify-content-center my-3">
       <div className="row">
-        <div className="col-6">
+        <div className="col-sm-6 text-center">
           <img src={HomeImg} alt="Imagen inicio" className="img-fluid" />
         </div>
-        <div className="col-6">
+        <div className="col-sm-6">
           <div class="card text-center p-2" style={{ border: "none" }}>
             <img
               src={user.photoURL}
               className="card-img-top m-auto rounded-circle"
               alt="..."
-              style={{ width: "50%" }}
+              style={{ width: "30%" }}
             />
             <div class="card-body">
               <h5 class="card-title">{user.displayName}</h5>

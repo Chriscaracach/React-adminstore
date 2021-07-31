@@ -14,6 +14,9 @@ const Acciones = () => {
   //State para controlar cuándo se cierran/abren los modales
   const [showProveedores, setShowProveedores] = useState(false);
   const [showCompras, setShowCompras] = useState(false);
+  const [cargaProveedorExitosa, setCargaProveedorExitosa] = useState(false);
+  const [cargaCompraExitosa, setCargaCompraExitosa] = useState(false);
+  const [proveedorExistente, setProveedorExistente] = useState(false);
 
   const handleCloseProveedores = () => setShowProveedores(false);
   const handleShowProveedores = () => setShowProveedores(true);
@@ -44,10 +47,16 @@ const Acciones = () => {
         mail: values.mail,
         listaprecios: values.listaprecios,
       });
-      alert("Proveedor cargado exitosamente");
       handleCloseProveedores();
+      setCargaProveedorExitosa(true);
+      setTimeout(() => {
+        setCargaProveedorExitosa(false);
+      }, 3000);
     } else {
-      alert("El proveedor ya existe");
+      setProveedorExistente(true);
+      setTimeout(() => {
+        setProveedorExistente(false);
+      }, 3000);
     }
   };
   //Función que envía datos de una nueva compra a un proveedor en la base de datos
@@ -59,8 +68,11 @@ const Acciones = () => {
       formapago: values.formapago,
       descripcion: values.descripcion,
     });
-    alert("Compra a proveedor cargada exitosamente");
     handleCloseCompras();
+    setCargaCompraExitosa(true);
+    setTimeout(() => {
+      setCargaCompraExitosa(false);
+    }, 3000);
   };
   return (
     <div className="container">
@@ -84,6 +96,25 @@ const Acciones = () => {
         >
           Nueva compra
         </button>
+
+        {cargaProveedorExitosa ? (
+          <div
+            class="alert alert-info d-flex align-items-center p-2 my-1"
+            role="alert"
+          >
+            <i class="bi bi-check-circle mx-1"></i>
+            <div>Proveedor cargado exitosamente</div>
+          </div>
+        ) : null}
+        {cargaCompraExitosa ? (
+          <div
+            class="alert alert-info d-flex align-items-center p-2 my-1"
+            role="alert"
+          >
+            <i class="bi bi-check-circle mx-1"></i>
+            <div>Compra registrada exitosamente</div>
+          </div>
+        ) : null}
       </div>
 
       {/*Modales*/}
@@ -161,6 +192,15 @@ const Acciones = () => {
                         <Field name="listaprecios" type="text" />
                         <ErrorMessage name="listaprecios" />
                       </div>
+                      {proveedorExistente ? (
+                        <div
+                          class="alert alert-danger d-flex align-items-center p-2 my-1"
+                          role="alert"
+                        >
+                          <i class="bi bi-x-circle mx-1"></i>
+                          <div>El proveedor ya existe</div>
+                        </div>
+                      ) : null}
                       <div className="row my-5">
                         <button type="submit">Enviar</button>
                       </div>
