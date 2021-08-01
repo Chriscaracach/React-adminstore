@@ -23,11 +23,11 @@ body {
   }
 
   #proveedores__acciones__container {
-    width: 25%;
+    width: 25% !important;
   }
 
   #proveedores__display__container {
-    width: 75%;
+    width: 75% !important;
   }
 
   #categorias__container {

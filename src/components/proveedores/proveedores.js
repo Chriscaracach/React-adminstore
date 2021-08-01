@@ -20,7 +20,10 @@ const Proveedores = () => {
         >
           <Acciones></Acciones>
         </div>
-        <div className="container w-100" id="proveedores__display__container">
+        <div
+          className="container w-100 border p-3 rounded"
+          id="proveedores__display__container"
+        >
           {/*Nav tab*/}
           <Navtabs></Navtabs>
 
