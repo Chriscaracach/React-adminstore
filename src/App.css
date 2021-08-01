@@ -2,6 +2,10 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
+.errormessage {
+  font-weight: 600;
+  color: red;
+}
 /*MQ*/
 @media (min-width: 768px) {
   #ventas__container {

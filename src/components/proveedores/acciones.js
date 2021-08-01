@@ -126,7 +126,7 @@ const Acciones = () => {
           backdrop="static"
           keyboard={false}
         >
-          <div class="modal-dialog">
+          <div class="modal-dialog w-75">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
@@ -154,7 +154,7 @@ const Acciones = () => {
                   validationSchema={Yup.object({
                     proveedor: Yup.string().required("Campo incompleto"),
                     direccion: Yup.string().required("Campo incompleto"),
-                    telefono: Yup.string().required("Campo incompleto"),
+                    telefono: Yup.number().required("Campo incompleto"),
                     mail: Yup.string().email(),
                     listaprecios: Yup.string(),
                   })}
@@ -168,29 +168,54 @@ const Acciones = () => {
                       <div className="row my-2">
                         <label htmlFor="proveedor">Proveedor</label>
                         <Field name="proveedor" type="text" />
-                        <ErrorMessage name="proveedor" />
+                        <ErrorMessage
+                          name="proveedor"
+                          render={(msg) => (
+                            <div className="errormessage">{msg}</div>
+                          )}
+                        />
                       </div>
                       <div className="row my-2">
                         <label htmlFor="direccion">Dirección</label>
                         <Field name="direccion" type="text" />
-                        <ErrorMessage name="direccion" />
+                        <ErrorMessage
+                          name="direccion"
+                          render={(msg) => (
+                            <div className="errormessage">{msg}</div>
+                          )}
+                        />
                       </div>
                       <div className="row my-2">
                         <label htmlFor="telefono">Teléfono</label>
                         <Field name="telefono" type="text" />
-                        <ErrorMessage name="telefono" />
+                        <ErrorMessage
+                          name="telefono"
+                          render={(msg) => (
+                            <div className="errormessage">{msg}</div>
+                          )}
+                        />
                       </div>
                       <div className="row my-2">
                         <label htmlFor="mail">E-mail</label>
                         <Field name="mail" type="email" />
-                        <ErrorMessage name="mail" />
+                        <ErrorMessage
+                          name="mail"
+                          render={(msg) => (
+                            <div className="errormessage">{msg}</div>
+                          )}
+                        />
                       </div>
                       <div className="row my-2">
                         <label htmlFor="listaprecios">
                           Lista de precios / Sitio web
                         </label>
                         <Field name="listaprecios" type="text" />
-                        <ErrorMessage name="listaprecios" />
+                        <ErrorMessage
+                          name="listaprecios"
+                          render={(msg) => (
+                            <div className="errormessage">{msg}</div>
+                          )}
+                        />
                       </div>
                       {proveedorExistente ? (
                         <div
@@ -217,7 +242,7 @@ const Acciones = () => {
           backdrop="static"
           keyboard={false}
         >
-          <div class="modal-dialog">
+          <div class="modal-dialog w-75">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">
@@ -246,7 +271,10 @@ const Acciones = () => {
                   validationSchema={Yup.object({
                     fecha: Yup.string().required("Campo incompleto"),
                     proveedor: Yup.string().required("Campo incompleto"),
-                    monto: Yup.string().required("Campo incompleto"),
+                    monto: Yup.number()
+                      .required("Campo incompleto")
+                      .max(10, "El número es muy largo")
+                      .positive("El número debe ser positivo"),
                     formapago: Yup.string(),
                     descripcion: Yup.string(),
                   })}
@@ -260,12 +288,18 @@ const Acciones = () => {
                       <div className="row my-2">
                         <label htmlFor="fecha">Fecha</label>
                         <Field name="fecha" type="date" />
-                        <ErrorMessage name="fecha" />
+                        <div className="container w-50">
+                          <ErrorMessage
+                            name="fecha"
+                            render={(msg) => (
+                              <div className="errormessage">{msg}</div>
+                            )}
+                          />
+                        </div>
                       </div>
                       <div className="row my-2">
                         <label htmlFor="proveedor">Proveedor</label>
                         <Field name="proveedor" as="select">
-                          <option>---</option>
                           {Proveedores &&
                             Proveedores.map((item, i) => {
                               return (
@@ -275,33 +309,58 @@ const Acciones = () => {
                               );
                             })}
                         </Field>
-                        <ErrorMessage name="formapago" />
+                        <div className="container w-50">
+                          <ErrorMessage
+                            name="formapago"
+                            render={(msg) => (
+                              <div className="errormessage">{msg}</div>
+                            )}
+                          />
+                        </div>
                       </div>
                       <div className="row my-2">
                         <label htmlFor="monto">Monto</label>
                         <Field name="monto" type="text" />
-                        <ErrorMessage name="monto" />
+                        <div className="container w-50">
+                          <ErrorMessage
+                            name="monto"
+                            render={(msg) => (
+                              <div className="errormessage">{msg}</div>
+                            )}
+                          />
+                        </div>
                       </div>
                       <div className="row my-2">
                         <label htmlFor="formapago">Forma de pago</label>
                         <Field name="formapago" as="select">
-                          <option>---</option>
                           <option value="Contado">Contado</option>
                           <option value="Credito">Crédito</option>
                           <option value="Mercadopago">Mercado Pago</option>
                           <option value="Debito">Débito</option>
                         </Field>
-                        <ErrorMessage name="formapago" />
+                        <div className="container w-50">
+                          <ErrorMessage
+                            name="formapago"
+                            render={(msg) => (
+                              <div className="errormessage">{msg}</div>
+                            )}
+                          />
+                        </div>
                       </div>
                       <div className="row my-2">
                         <label htmlFor="descripcion">Descripcion</label>
                         <Field name="descripcion" as="textarea" />
-                        <ErrorMessage name="descripcion" />
+                        <div className="container w-50">
+                          <ErrorMessage
+                            name="descripcion"
+                            render={(msg) => (
+                              <div className="errormessage">{msg}</div>
+                            )}
+                          />
+                        </div>
                       </div>
                       <div className="row my-5">
-                        <button type="submit" onClick={handleCloseCompras}>
-                          Enviar
-                        </button>
+                        <button type="submit">Enviar</button>
                       </div>
                     </div>
                   </Form>

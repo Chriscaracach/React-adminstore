@@ -55,7 +55,10 @@ const Input = () => {
             <div className="row my-2">
               <label htmlFor="categoria">Ingresá una nueva categoría</label>
               <Field name="categoria" type="text" />
-              <ErrorMessage name="categoria" />
+              <ErrorMessage
+                name="categoria"
+                render={(msg) => <div className="errormessage">{msg}</div>}
+              />
             </div>
             <div className="row my-4">
               <button className="btn btn-success" type="submit">

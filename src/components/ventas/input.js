@@ -45,9 +45,10 @@ const Input = () => {
         validationSchema={Yup.object({
           fecha: Yup.string().required("Campo incompleto"),
           producto: Yup.string().required("Campo incompleto"),
-          precio: Yup.string()
-            .max(10, "Demasiados caracteres")
-            .required("Campo incompleto"),
+          precio: Yup.number()
+            .max(10, "El número es muy largo")
+            .required("Campo incompleto")
+            .positive("El número debe ser positivo"),
           formapago: Yup.string().required("Campo incompleto"),
           descripcion: Yup.string(),
         })}
@@ -63,12 +64,14 @@ const Input = () => {
             <div className="row my-2">
               <label htmlFor="fecha">Fecha</label>
               <Field name="fecha" type="date" />
-              <ErrorMessage name="fecha" />
+              <ErrorMessage
+                name="fecha"
+                render={(msg) => <div className="errormessage">{msg}</div>}
+              />
             </div>
             <div className="row my-2">
               <label htmlFor="producto">Tipo de producto</label>
               <Field name="producto" as="select">
-                <option>---</option>
                 {Categorias &&
                   Categorias.map((item) => {
                     return (
@@ -76,28 +79,39 @@ const Input = () => {
                     );
                   })}
               </Field>
-              <ErrorMessage name="producto" />
+              <ErrorMessage
+                name="producto"
+                render={(msg) => <div className="errormessage">{msg}</div>}
+              />
             </div>
             <div className="row my-2">
               <label htmlFor="precio">Precio</label>
               <Field name="precio" type="text" />
-              <ErrorMessage name="precio" />
+              <ErrorMessage
+                name="precio"
+                render={(msg) => <div className="errormessage">{msg}</div>}
+              />
             </div>
             <div className="row my-2">
               <label htmlFor="formapago">Forma de pago</label>
               <Field name="formapago" as="select">
-                <option>---</option>
                 <option value="Contado">Contado</option>
                 <option value="Credito">Crédito</option>
                 <option value="Mercadopago">Mercado Pago</option>
                 <option value="Debito">Débito</option>
               </Field>
-              <ErrorMessage name="formapago" />
+              <ErrorMessage
+                name="formapago"
+                render={(msg) => <div className="errormessage">{msg}</div>}
+              />
             </div>
             <div className="row my-2">
               <label htmlFor="descripcion">Descripcion</label>
               <Field name="descripcion" as="textarea" />
-              <ErrorMessage name="descripcion" />
+              <ErrorMessage
+                name="descripcion"
+                render={(msg) => <div className="errormessage">{msg}</div>}
+              />
             </div>
             {cargaVentaExitosa ? (
               <div
