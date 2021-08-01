@@ -1,15 +1,20 @@
 import React from "react";
+//Importamos elementos de Firebase
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { auth, firestore } from "../../firebase";
+//Loader
 import Loader from "../loader";
 
+//Componente Item
 const Item = ({ categoria, keyid }) => {
+  //Referencia a la Base de datos
   let Ref = firestore.collection(`usuario/${auth.currentUser.uid}/categorias`);
+  //Función para borrar la categoría
   const borrarCategoria = (id) => {
     Ref.doc(id).delete();
   };
   return (
-    <span class="badge rounded-pill bg-info text-dark p-1 m-1">
+    <span className="badge rounded-pill bg-info text-dark p-1 m-1">
       <div className="ms-2">
         {categoria}
         <button
@@ -25,8 +30,11 @@ const Item = ({ categoria, keyid }) => {
   );
 };
 
+//Componente List
 const List = () => {
+  //Referencia a la Base de datos
   let Ref = firestore.collection(`usuario/${auth.currentUser.uid}/categorias`);
+  //Guardamos elementos obtenidos de la Base de datos en un array
   let [Categorias] = useCollectionData(Ref, { idField: "id" });
 
   return (
@@ -34,21 +42,23 @@ const List = () => {
       <div className="text-center">
         <h3>Categorías</h3>
       </div>
-
-      {Categorias ? (
-        Categorias &&
-        Categorias.map((item) => {
-          return (
-            <Item
-              categoria={item.categoria}
-              keyid={item.id}
-              key={item.id}
-            ></Item>
-          );
-        })
-      ) : (
-        <Loader></Loader>
-      )}
+      {
+        /*Mapeo sobre Categorías*/
+        Categorias ? (
+          Categorias &&
+          Categorias.map((item) => {
+            return (
+              <Item
+                categoria={item.categoria}
+                keyid={item.id}
+                key={item.id}
+              ></Item>
+            );
+          })
+        ) : (
+          <Loader></Loader>
+        )
+      }
     </div>
   );
 };

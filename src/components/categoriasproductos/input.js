@@ -1,19 +1,25 @@
 import React, { useState } from "react";
+//Importamos elementos de Formik y Yup para formularios
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+//Importamos elementos de Firebase
 import { auth, firestore } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 
+//Componente Input
 const Input = () => {
+  //Estado para manejar los mensajes de carga exitosa o fallida de datos
   const [cargaCategoriaExitosa, setCargaCategoriaExitosa] = useState(false);
   const [categoriaExiste, setCategoriaExiste] = useState(false);
   //Referencia a la base de datos
   const Ref = firestore.collection(
     `usuario/${auth.currentUser.uid}/categorias`
   );
+  //Guardamos elementos de la Base de datos en un array
   let [Categorias] = useCollectionData(Ref, { idField: "id" });
-  //función para enviar a base de datos
+  //Función para enviar a base de datos
   const enviarCategoria = (values) => {
+    //Hacemos filter sobre Categorías para validar que el elemento no exista previamente
     let fil = Categorias.filter((item) => {
       return values.categoria === item.categoria;
     });
@@ -21,11 +27,13 @@ const Input = () => {
       Ref.add({
         categoria: values.categoria,
       });
+      //Mensajes de carga exitosa
       setCargaCategoriaExitosa(true);
       setTimeout(() => {
         setCargaCategoriaExitosa(false);
       }, 3000);
     } else {
+      //Mensajes de categoría existente
       setCategoriaExiste(true);
       setTimeout(() => {
         setCategoriaExiste(false);
@@ -66,15 +74,18 @@ const Input = () => {
               </button>
             </div>
             <div className="container">
-              {cargaCategoriaExitosa ? (
-                <div
-                  class="alert alert-info d-flex align-items-center p-2 my-1"
-                  role="alert"
-                >
-                  <i class="bi bi-check-circle mx-1"></i>
-                  <div>Categoría cargada exitosamente</div>
-                </div>
-              ) : null}
+              {
+                /*Mensajes de carga exitosa o fallida*/
+                cargaCategoriaExitosa ? (
+                  <div
+                    className="alert alert-info d-flex align-items-center p-2 my-1"
+                    role="alert"
+                  >
+                    <i className="bi bi-check-circle mx-1"></i>
+                    <div>Categoría cargada exitosamente</div>
+                  </div>
+                ) : null
+              }
               {categoriaExiste ? (
                 <div
                   class="alert alert-danger d-flex align-items-center p-2 my-1"

@@ -53,7 +53,7 @@ const Item = ({
             <div
               className="modal fade"
               id="exampleModal"
-              tabindex="-1"
+              tabIndex="-1"
               aria-labelledby="exampleModalLabel"
               aria-hidden="true"
             >
@@ -102,6 +102,7 @@ const DisplayVentas = () => {
   }
   return (
     <div className="container text-center my-4">
+      {/*Operador ternario para mostrar componente Loader mientras carga*/}
       {Ventas ? (
         <>
           <h1 className="my-2">Lista de ventas</h1>
@@ -141,14 +142,6 @@ const DisplayVentas = () => {
         </>
       ) : (
         <>
-          {/* <img
-            src={imgventas}
-            alt="No hay ventas cargadas"
-            className="img-fluid w-50 h-50 m-auto"
-          />
-          <h3>No tenés ventas cargadas</h3> 
-          NO FUNCIONÓ
-          */}
           <Loader></Loader>
         </>
       )}

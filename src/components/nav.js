@@ -7,7 +7,7 @@ const Nav = () => {
       <nav className="navbar navbar-expand-sm navbar-dark bg-success">
         <div className="container-fluid">
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
@@ -15,7 +15,7 @@ const Nav = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
@@ -36,14 +36,14 @@ const Nav = () => {
               <Link to="proveedores" style={{ textDecoration: "none" }}>
                 <li className="nav-item nav-link mt-1">
                   <p className="lead">
-                    <i class="bi bi-people mx-2"></i>Proveedores
+                    <i className="bi bi-people mx-2"></i>Proveedores
                   </p>
                 </li>
               </Link>
               <Link to="categoriasproductos" style={{ textDecoration: "none" }}>
                 <li className="nav-item nav-link mt-1">
                   <p className="lead">
-                    <i class="bi bi-pencil mx-2"></i>Categorías
+                    <i className="bi bi-pencil mx-2"></i>Categorías
                   </p>
                 </li>
               </Link>

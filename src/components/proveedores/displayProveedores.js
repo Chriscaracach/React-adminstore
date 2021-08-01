@@ -1,10 +1,11 @@
 import React from "react";
+//Importamos elementos de Firebase
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { auth, firestore } from "../../firebase";
-//import imgproveedores from "../../img/imgproveedores.png";
+//Componentes
 import Loader from "../loader";
 
-//Item
+//Componente Item
 const Item = ({
   keyid,
   id,
@@ -14,6 +15,7 @@ const Item = ({
   mail,
   listaprecios,
 }) => {
+  //Referencia a la Base de datos
   let refProveedores = firestore.collection(
     `usuario/${auth.currentUser.uid}/proveedores`
   );
@@ -91,58 +93,58 @@ const Item = ({
   );
 };
 
+//Componente Display
 const Displayproveedores = () => {
+  //Referencia a la base de datos
   let refProveedores = firestore.collection(
     `usuario/${auth.currentUser.uid}/proveedores`
   );
+  //Guardamos elementos de la base de datos en un array
   let [Proveedores] = useCollectionData(refProveedores, { idField: "id" });
   return (
     <div className="container text-center my-2 p-2 rounded">
-      {Proveedores ? (
-        <div className="table-responsive">
-          <table className="table table-hover table-sm align-middle">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Proveedor</th>
-                <th scope="col">Dirección</th>
-                <th scope="col">Teléfono</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Eliminar</th>
-                <th scope="col">Info</th>
-              </tr>
-            </thead>
-            <tbody>
-              {/*Mapeo del array con los elementos obtenidos de la base de datos*/}
-              {Proveedores &&
-                Proveedores.map((item, i) => {
-                  return (
-                    <Item
-                      keyid={item.id}
-                      key={item.id}
-                      id={i}
-                      proveedor={item.proveedor}
-                      direccion={item.direccion}
-                      telefono={item.telefono}
-                      mail={item.mail}
-                      listaprecios={item.listaprecios}
-                    ></Item>
-                  );
-                })}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        <>
-          {/* <img
-            src={imgproveedores}
-            alt="No hay proveedores cargados"
-            className="img-fluid w-50 h-50 m-auto"
-          />
-          <h3>No tenés proveedores cargados</h3> */}
-          <Loader></Loader>
-        </>
-      )}
+      {
+        /*Operador ternario para mostrar Loader o la tabla*/
+        Proveedores ? (
+          <div className="table-responsive">
+            <table className="table table-hover table-sm align-middle">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Proveedor</th>
+                  <th scope="col">Dirección</th>
+                  <th scope="col">Teléfono</th>
+                  <th scope="col">E-mail</th>
+                  <th scope="col">Eliminar</th>
+                  <th scope="col">Info</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/*Mapeo del array con los elementos obtenidos de la base de datos*/}
+                {Proveedores &&
+                  Proveedores.map((item, i) => {
+                    return (
+                      <Item
+                        keyid={item.id}
+                        key={item.id}
+                        id={i}
+                        proveedor={item.proveedor}
+                        direccion={item.direccion}
+                        telefono={item.telefono}
+                        mail={item.mail}
+                        listaprecios={item.listaprecios}
+                      ></Item>
+                    );
+                  })}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <>
+            <Loader></Loader>
+          </>
+        )
+      }
     </div>
   );
 };

@@ -3,7 +3,7 @@ import React from "react";
 //Firebase
 import { auth } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-
+//Imágenes
 import HomeImg from "../../img/img1.png";
 
 //Ésta función sirve para cerrar la sesión de la cuenta de Google
@@ -12,6 +12,7 @@ const desloguearGoogle = () => {
 };
 
 const Home = () => {
+  //Guardamos información de la autenticación
   const [user] = useAuthState(auth);
 
   return (
@@ -21,22 +22,22 @@ const Home = () => {
           <img src={HomeImg} alt="Imagen inicio" className="img-fluid" />
         </div>
         <div className="col-sm-6">
-          <div class="card text-center p-2" style={{ border: "none" }}>
+          <div className="card text-center p-2" style={{ border: "none" }}>
             <img
               src={user.photoURL}
               className="card-img-top m-auto rounded-circle"
               alt="..."
               style={{ width: "30%" }}
             />
-            <div class="card-body">
-              <h5 class="card-title">{user.displayName}</h5>
-              <p class="card-text">Bienvenido/a a Adminstore</p>
-              <p class="card-text">
+            <div className="card-body">
+              <h5 className="card-title">{user.displayName}</h5>
+              <p className="card-text">Bienvenido/a a Adminstore</p>
+              <p className="card-text">
                 No olvides personalizar las categorías de tus productos en el
                 menú "Categorías"
               </p>
-              <p class="card-text">
-                <small class="text-muted">
+              <p className="card-text">
+                <small className="text-muted">
                   <button className="btn btn-danger" onClick={desloguearGoogle}>
                     Cerrar Sesión
                   </button>

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Navtabs = () => {
+  //States para manejar la classname "active" de las pestañas
   const [activeProveedores, setActiveProveedores] = useState(true);
   const [activeCompras, setActiveCompras] = useState(false);
-
+  //Funciones para manejar el estado
   const handleActiveProveedores = () => {
     setActiveCompras(!activeCompras);
     setActiveProveedores(!activeProveedores);
@@ -25,6 +26,7 @@ const Navtabs = () => {
           >
             <p
               className={
+                /*Clases condicionales*/
                 "text-dark nav-link " + (activeProveedores ? "active" : null)
               }
             >
@@ -40,6 +42,7 @@ const Navtabs = () => {
           >
             <p
               className={
+                /*Clases condicionales*/
                 "text-dark nav-link " + (activeCompras ? "active" : null)
               }
             >

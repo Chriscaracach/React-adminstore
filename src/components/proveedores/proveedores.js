@@ -7,9 +7,6 @@ import Navtabs from "./navtabs";
 import Displayproveedores from "./displayProveedores";
 import Displaycomprasproveedores from "./displayComprasProveedores";
 
-//TAREAS
-//Configurar acciones de botones
-//
 const Proveedores = () => {
   return (
     <BrowserRouter>
@@ -24,10 +21,7 @@ const Proveedores = () => {
           className="container w-100 border p-3 rounded"
           id="proveedores__display__container"
         >
-          {/*Nav tab*/}
           <Navtabs></Navtabs>
-
-          {/*display*/}
           <Switch>
             <Route
               exact

@@ -1,7 +1,8 @@
 import React from "react";
+//Importamos elementos de Firebase
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { auth, firestore } from "../../firebase";
-//import imgcomprasproveedores from "../../img/imgcomprasproveedores.png";
+//Loader
 import Loader from "../loader";
 
 //Item
@@ -14,6 +15,7 @@ const Item = ({
   formapago,
   descripcion,
 }) => {
+  //Referencia a la Base de datos
   let refProveedores = firestore.collection(
     `usuario/${auth.currentUser.uid}/comprasproveedores`
   );
@@ -50,7 +52,6 @@ const Item = ({
               +
             </button>
 
-            {/*Modal*/}
             <div
               className="modal fade"
               id="modalDescripcion"
@@ -91,10 +92,13 @@ const Item = ({
   );
 };
 
+//Componente Display
 const Displaycomprasproveedores = () => {
+  //Referencia a la Base de datos
   let refComprasProveedores = firestore.collection(
     `usuario/${auth.currentUser.uid}/comprasproveedores`
   );
+  //Guardamos elementos de la Base de datos en un arry
   let [ComprasProveedores] = useCollectionData(refComprasProveedores, {
     idField: "id",
   });
@@ -136,12 +140,6 @@ const Displaycomprasproveedores = () => {
         </div>
       ) : (
         <>
-          {/* <img
-            src={imgcomprasproveedores}
-            alt="No hay compras cargadas"
-            className="img-fluid w-50 h-50 m-auto"
-          />
-          <h3>No tenés compras cargadas</h3> */}
           <Loader></Loader>
         </>
       )}

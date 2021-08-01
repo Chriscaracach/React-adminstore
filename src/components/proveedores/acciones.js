@@ -1,15 +1,15 @@
 import React, { useState } from "react";
+//Importamos elementos de Formik y Yup para los formularios
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+//Importamos elementos de Firebase
 import { auth, firestore } from "../../firebase";
 import { useCollectionData } from "react-firebase-hooks/firestore";
-//Bootstrap
+//Importamos React-Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
-import Modal from "react-bootstrap/Modal";
+import { Modal } from "react-bootstrap";
 
-//Tareas para cuando veas esto
-//Configurar otro botón
-//Armar tablas para mostrar
+//Componente Acciones
 const Acciones = () => {
   //State para controlar cuándo se cierran/abren los modales
   const [showProveedores, setShowProveedores] = useState(false);
@@ -17,7 +17,7 @@ const Acciones = () => {
   const [cargaProveedorExitosa, setCargaProveedorExitosa] = useState(false);
   const [cargaCompraExitosa, setCargaCompraExitosa] = useState(false);
   const [proveedorExistente, setProveedorExistente] = useState(false);
-
+  //Funciones para manejar el estado
   const handleCloseProveedores = () => setShowProveedores(false);
   const handleShowProveedores = () => setShowProveedores(true);
   const handleCloseCompras = () => setShowCompras(false);
@@ -47,12 +47,14 @@ const Acciones = () => {
         mail: values.mail,
         listaprecios: values.listaprecios,
       });
+      //Manejo de modales y mensajes de carga exitosa
       handleCloseProveedores();
       setCargaProveedorExitosa(true);
       setTimeout(() => {
         setCargaProveedorExitosa(false);
       }, 3000);
     } else {
+      //Mensaje de proveedor existente
       setProveedorExistente(true);
       setTimeout(() => {
         setProveedorExistente(false);
@@ -68,6 +70,7 @@ const Acciones = () => {
       formapago: values.formapago,
       descripcion: values.descripcion,
     });
+    //Manejo de modales y mensajes de carga exitosa
     handleCloseCompras();
     setCargaCompraExitosa(true);
     setTimeout(() => {
@@ -86,7 +89,6 @@ const Acciones = () => {
         >
           Nuevo proveedor
         </button>
-
         <button
           type="button"
           className="btn btn-success my-1 w-100 proveedores__acciones__button"
@@ -97,15 +99,18 @@ const Acciones = () => {
           Nueva compra
         </button>
 
-        {cargaProveedorExitosa ? (
-          <div
-            class="alert alert-info d-flex align-items-center p-2 my-1"
-            role="alert"
-          >
-            <i class="bi bi-check-circle mx-1"></i>
-            <div>Proveedor cargado exitosamente</div>
-          </div>
-        ) : null}
+        {
+          /*Mensajes de carga exitosa*/
+          cargaProveedorExitosa ? (
+            <div
+              class="alert alert-info d-flex align-items-center p-2 my-1"
+              role="alert"
+            >
+              <i class="bi bi-check-circle mx-1"></i>
+              <div>Proveedor cargado exitosamente</div>
+            </div>
+          ) : null
+        }
         {cargaCompraExitosa ? (
           <div
             class="alert alert-info d-flex align-items-center p-2 my-1"
@@ -117,8 +122,6 @@ const Acciones = () => {
         ) : null}
       </div>
 
-      {/*Modales*/}
-
       <>
         <Modal
           show={showProveedores}
@@ -126,21 +129,21 @@ const Acciones = () => {
           backdrop="static"
           keyboard={false}
         >
-          <div class="modal-dialog w-75">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
+          <div className="modal-dialog w-75">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
                   Nuevo proveedor
                 </h5>
                 <button
                   type="button"
-                  class="btn-close"
+                  className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                   onClick={handleCloseProveedores}
                 ></button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 <Formik
                   /*Valores iniciales del formulario*/
                   initialValues={{
@@ -217,15 +220,18 @@ const Acciones = () => {
                           )}
                         />
                       </div>
-                      {proveedorExistente ? (
-                        <div
-                          class="alert alert-danger d-flex align-items-center p-2 my-1"
-                          role="alert"
-                        >
-                          <i class="bi bi-x-circle mx-1"></i>
-                          <div>El proveedor ya existe</div>
-                        </div>
-                      ) : null}
+                      {
+                        /*Mensaje de proveedor existente*/
+                        proveedorExistente ? (
+                          <div
+                            className="alert alert-danger d-flex align-items-center p-2 my-1"
+                            role="alert"
+                          >
+                            <i className="bi bi-x-circle mx-1"></i>
+                            <div>El proveedor ya existe</div>
+                          </div>
+                        ) : null
+                      }
                       <div className="row my-5">
                         <button type="submit">Enviar</button>
                       </div>
@@ -242,22 +248,22 @@ const Acciones = () => {
           backdrop="static"
           keyboard={false}
         >
-          <div class="modal-dialog w-75">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">
+          <div className="modal-dialog w-75">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
                   Nueva compra a proveedor
                 </h5>
                 <button
                   type="button"
-                  class="btn-close"
+                  className="btn-close"
                   data-bs-dismiss="modal"
                   aria-label="Close"
                   onClick={handleCloseCompras}
                 ></button>
               </div>
 
-              <div class="modal-body">
+              <div className="modal-body">
                 <Formik
                   /*Valores iniciales del formulario*/
                   initialValues={{
