@@ -49,7 +49,6 @@ const Input = () => {
           fecha: Yup.string().required("Campo incompleto"),
           producto: Yup.string().required("Campo incompleto"),
           precio: Yup.number()
-            .max(10, "El número es muy largo")
             .required("Campo incompleto")
             .positive("El número debe ser positivo"),
           formapago: Yup.string().required("Campo incompleto"),
@@ -95,7 +94,7 @@ const Input = () => {
             </div>
             <div className="row my-2">
               <label htmlFor="precio">Precio</label>
-              <Field name="precio" type="text" />
+              <Field name="precio" type="number" />
               <ErrorMessage
                 name="precio"
                 render={(msg) => <div className="errormessage">{msg}</div>}
